@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mobiroller.Core\Mobiroller.Core.csproj" />
+    <ProjectReference Include="..\Mobiroller.Data\Mobiroller.Data.csproj" />
+    <ProjectReference Include="..\Mobiroller.Entities\Mobiroller.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
