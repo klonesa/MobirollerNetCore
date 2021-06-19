@@ -27,10 +27,22 @@ namespace Mobiroller.API.Controllers
             return _localizer["Event"];
         }
 
-        [HttpGet("GetAll")]
-        public IActionResult GetAll()
+        [HttpGet("GetAllDetails")]
+        public IActionResult GetAllDetails()
         {
-            var result = _eventTrService.GetAll();
+            var result = _eventTrService.GetAllDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("GetByEventId")]
+        public IActionResult GetByEventId(int eventId)
+        {
+            var result = _eventTrService.GetByEventId(eventId);
             if (result.Success)
             {
                 return Ok(result);

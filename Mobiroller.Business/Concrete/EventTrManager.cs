@@ -6,6 +6,7 @@ using Mobiroller.Business.Constants;
 using Mobiroller.Core.Utilities.Results;
 using Mobiroller.Data.Abstract;
 using Mobiroller.Entities.Concrete;
+using Mobiroller.Entities.DTOs;
 
 namespace Mobiroller.Business.Concrete
 {
@@ -18,24 +19,24 @@ namespace Mobiroller.Business.Concrete
             _eventTrDal = eventsTrDal;
         }
 
-        public IDataResult<List<EventTr>> GetAll()
+        public IDataResult<List<EventTrDto>> GetAllDetails()
         {
-            var result = _eventTrDal.GetAll();
+            var result = _eventTrDal.GetAllDetails();
             if (result != null)
             {
-                return new SuccessDataResult<List<EventTr>>(result, MessagesTR.Listed);
+                return new SuccessDataResult<List<EventTrDto>>(result, MessagesTR.Listed);
             }
-            return new ErrorDataResult<List<EventTr>>(MessagesTR.Error);
+            return new ErrorDataResult<List<EventTrDto>>(MessagesTR.Error);
         }
 
-        public IDataResult<EventTr> GetById(int eventId)
+        public IDataResult<EventTrDto> GetByEventId(int eventId)
         {
-            var result = _eventTrDal.GetById(eventId);
+            var result = _eventTrDal.GetByEventId(eventId);
             if (result != null)
             {
-                return new SuccessDataResult<EventTr>(result, MessagesTR.GetById);
+                return new SuccessDataResult<EventTrDto>(result, MessagesTR.GetById);
             }
-            return new ErrorDataResult<EventTr>(MessagesTR.Error);
+            return new ErrorDataResult<EventTrDto>(MessagesTR.Error);
         }
 
         public IResult Add(EventTr entity)
