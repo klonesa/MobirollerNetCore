@@ -26,16 +26,5 @@ namespace Mobiroller.API.Controllers
             return _localizer["Home"];
         }
 
-        [HttpGet("GetAll")]
-        public IActionResult GetAll()
-        {
-            var result = _eventsTrService.GetAll();
-            if ( result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest();
-        }
     }
 }

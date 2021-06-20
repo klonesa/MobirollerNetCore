@@ -13,12 +13,19 @@ namespace Mobiroller.Business.DependencyResolvers
     {
         protected override void Load(ContainerBuilder builder)
         {
+            //EventTr implements
             builder.RegisterType<EventTrManager>().As<IEventTrService>().SingleInstance();
             builder.RegisterType<EfEventTrDal>().As<IEventTrDal>().SingleInstance();
 
             //EventIt implements
             builder.RegisterType<EventItManager>().As<IEventItService>().SingleInstance();
             builder.RegisterType<EfEventItDal>().As<IEventItDal>().SingleInstance();
+
+            //User implements
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+
+
         }
     }
 }
