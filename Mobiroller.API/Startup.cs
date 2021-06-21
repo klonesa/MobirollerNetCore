@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Mobiroller.API.Extensions;
+using Mobiroller.Core.DependencyResolvers;
+using Mobiroller.Core.Extensions;
+using Mobiroller.Core.Utilities.IoC;
 
 namespace Mobiroller.API
 {
@@ -21,8 +24,6 @@ namespace Mobiroller.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            
         }
 
         public IConfiguration Configuration { get; }
@@ -30,8 +31,7 @@ namespace Mobiroller.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Request Localization
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            //Request Localization Options
             services.Configure<RequestLocalizationOptions>(
                 options =>
                 {
@@ -42,7 +42,7 @@ namespace Mobiroller.API
                         new CultureInfo("tr-TR")
                     };
 
-                   //options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                    //options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
                     options.RequestCultureProviders = new[] { new RouteDataRequestCultureProvider { IndexOfCulture = 1, IndexofUICulture = 1 } };
@@ -70,6 +70,9 @@ namespace Mobiroller.API
                 };
 
             });
+
+            //Farklý modül kullanýmý için bir ICoreModule interfacesi oluþturarak startup'ý baðýmlýlýktan kurtarmaktadýr.
+            services.AddDependencyResolvers(new ICoreModule[] { new CoreModule(), });
 
         }
 

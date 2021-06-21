@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Mobiroller.Business.Abstract;
 using Mobiroller.Business.Constants;
+using Mobiroller.Core.Aspect.Autofac.Caching;
 using Mobiroller.Core.Helpers;
 using Mobiroller.Core.Utilities.Results;
 using Mobiroller.Data.Abstract;
@@ -19,8 +20,8 @@ namespace Mobiroller.Business.Concrete
 {
     public class EventManager : IEventService
     {
-        private IEventDal _eventDal;
-        private ICategoryDal _categoryDal;
+        private readonly IEventDal _eventDal;
+        private readonly ICategoryDal _categoryDal;
 
         public EventManager(IEventDal eventDal, ICategoryDal categoryDal)
         {
@@ -56,6 +57,17 @@ namespace Mobiroller.Business.Concrete
                 _eventDal.Add(entity);
             }
             return new SuccessResult(Messages.Added);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<EventDetail>> GetAllEventDetails()
+        {
+            var result = _eventDal.GetAllEventDetails();
+            if (result!=null)
+            {
+                return new SuccessDataResult<List<EventDetail>>(result,Messages.Listed);
+            }
+            return new ErrorDataResult<List<EventDetail>>(Messages.Error);
         }
     }
 }

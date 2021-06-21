@@ -24,8 +24,8 @@ namespace Mobiroller.Data.Concrete.EfCore
         {
             using (var context=new MobirollerContext())
             {
-                return context.Category.FirstOrDefault(c => c.CategoryName.ToLower().Equals(categoryName.ToLower())).CategoryId;
-                    
+                return context.Category.Where(c => c.CategoryName.ToLower().Equals(JsonParseHelper.utf8Converter(categoryName.ToLower()))).FirstOrDefault().CategoryId;
+
             }
         }
     }

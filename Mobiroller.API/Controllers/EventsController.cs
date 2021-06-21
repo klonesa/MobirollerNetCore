@@ -13,7 +13,7 @@ namespace Mobiroller.API.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private IEventService _eventService;
+        private readonly IEventService _eventService;
 
         public EventsController(IEventService eventService)
         {
@@ -30,6 +30,18 @@ namespace Mobiroller.API.Controllers
         public IActionResult ImportItalianJson(List<JsonPackageIt> jsonString)
         {
             return Ok(_eventService.ImportItalianJson(jsonString));
+        }
+
+        [HttpGet("GetAllEventDetails")]
+        public IActionResult GetAllEventDetails()
+        {
+            var result = _eventService.GetAllEventDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
         }
     }
 }

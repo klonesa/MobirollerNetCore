@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Mobiroller.Business.Abstract;
+using Mobiroller.Business.ValidationRules.FluentValidation;
+using Mobiroller.Core.Aspect.Autofac.Validation;
 using Mobiroller.Core.Entities.Concrete;
 using Mobiroller.Core.Utilities.Results;
 using Mobiroller.Data.Abstract;
@@ -18,6 +20,7 @@ namespace Mobiroller.Business.Concrete
             _userDal = userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Create(User entity)
         {
             _userDal.Add(entity);
