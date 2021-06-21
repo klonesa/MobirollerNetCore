@@ -15,8 +15,9 @@ namespace Mobiroller.Data.Contexts
                 @"Server=(localdb)\MSSQLLocalDB;Database=Mobiroller;integrated security=true;");
         }
 
-        public DbSet<EventTr> EventsTr { get; set; }
-        public DbSet<EventIt> EventsIt { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<EventLog> EventLog { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }

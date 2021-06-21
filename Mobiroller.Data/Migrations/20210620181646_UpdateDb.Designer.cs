@@ -10,8 +10,8 @@ using Mobiroller.Data.Contexts;
 namespace Mobiroller.Data.Migrations
 {
     [DbContext(typeof(MobirollerContext))]
-    [Migration("20210619202035_AddedUserDB")]
-    partial class AddedUserDB
+    [Migration("20210620181646_UpdateDb")]
+    partial class UpdateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,54 +51,64 @@ namespace Mobiroller.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Mobiroller.Entities.Concrete.EventIt", b =>
+            modelBuilder.Entity("Mobiroller.Entities.Concrete.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Categoria");
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Event")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Evento");
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Orario");
+                    b.HasKey("CategoryId");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EventsIt");
+                    b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Mobiroller.Entities.Concrete.EventTr", b =>
+            modelBuilder.Entity("Mobiroller.Entities.Concrete.EventLog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EventLogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Kategori");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Event")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Olay");
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("dc_Zaman");
+                    b.Property<string>("EventName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("LanguagesId")
+                        .HasColumnType("int");
 
-                    b.ToTable("EventsTr");
+                    b.HasKey("EventLogId");
+
+                    b.ToTable("EventLog");
+                });
+
+            modelBuilder.Entity("Mobiroller.Entities.Concrete.Language", b =>
+                {
+                    b.Property<int>("LanguagesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LanguagesAlias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguagesName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LanguagesId");
+
+                    b.ToTable("Languages");
                 });
 #pragma warning restore 612, 618
         }

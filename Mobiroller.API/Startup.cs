@@ -21,6 +21,8 @@ namespace Mobiroller.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -40,7 +42,7 @@ namespace Mobiroller.API
                         new CultureInfo("tr-TR")
                     };
 
-                    options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                   //options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
                     options.RequestCultureProviders = new[] { new RouteDataRequestCultureProvider { IndexOfCulture = 1, IndexofUICulture = 1 } };
@@ -68,6 +70,7 @@ namespace Mobiroller.API
                 };
 
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

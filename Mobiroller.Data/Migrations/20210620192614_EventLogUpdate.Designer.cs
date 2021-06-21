@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mobiroller.Data.Contexts;
 
 namespace Mobiroller.Data.Migrations
 {
     [DbContext(typeof(MobirollerContext))]
-    partial class MobirollerContextModelSnapshot : ModelSnapshot
+    [Migration("20210620192614_EventLogUpdate")]
+    partial class EventLogUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,9 +59,7 @@ namespace Mobiroller.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryName")
-                        .IsUnicode(true)
-                        .UseCollation("Latin1_General_100_CI_AI_SC_UTF8")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");

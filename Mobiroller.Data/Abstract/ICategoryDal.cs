@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Mobiroller.Core.Data;
 using Mobiroller.Entities.Concrete;
-using Mobiroller.Entities.DTOs;
 
 namespace Mobiroller.Data.Abstract
 {
-    public interface IEventTrDal:IEntityRepository<EventTr>
+    public interface ICategoryDal:IEntityRepository<Category>
     {
-        List<EventTrDto> GetAllDetails();
-        EventTrDto GetByEventId(int eventId);
+        int GetCategoryIdByName(string categoryName);
+        int GetCategoryIdByNameFromItalian (string categoryName);
     }
 }
