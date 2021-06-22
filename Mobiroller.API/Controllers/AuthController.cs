@@ -4,15 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Mobiroller.Business.Abstract;
 using Mobiroller.Core.Entities.Concrete;
+using Mobiroller.Core.Utilities.Security.JWT;
+using Mobiroller.Data.Contexts;
 using Mobiroller.Entities.DTOs;
 
 namespace Mobiroller.API.Controllers
 {
     [Route("api/[controller]")]
-    [Consumes("application/json")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -25,7 +27,7 @@ namespace Mobiroller.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Create([FromForm]User entity)
+        public IActionResult Create([FromForm] User entity)
         {
             var result = _userService.Create(entity);
             if (result.Success)
@@ -37,15 +39,26 @@ namespace Mobiroller.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login([FromForm] UserLogin entity)
+        public async Task<Token> Login([FromForm] UserLogin userLogin)
         {
-            var result = _userService.Login(entity);
-            if (result.Success)
+            var context = new MobirollerContext();
+            User user = await context.Users.FirstOrDefaultAsync(x => x.Email == userLogin.Email && x.Password == userLogin.Password);
+            if (user != null)
             {
-                return Ok(result);
-            }
+                //Token üretiliyor.
+                TokenHandler tokenHandler = new TokenHandler(_configuration);
+                Token token = tokenHandler.CreateAccessToken(user);
 
-            return BadRequest();
+                //Refresh token Users tablosuna işleniyor.
+                user.RefreshToken = token.RefreshToken;
+                user.RefreshTokenEndDate = token.Expiration.AddMinutes(3);
+                await context.SaveChangesAsync();
+
+                return token;
+            }
+            return null;
         }
+
+
     }
 }

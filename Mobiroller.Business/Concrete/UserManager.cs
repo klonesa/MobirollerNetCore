@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Mobiroller.Business.Abstract;
+using Mobiroller.Business.Constants;
 using Mobiroller.Business.ValidationRules.FluentValidation;
 using Mobiroller.Core.Aspect.Autofac.Validation;
 using Mobiroller.Core.Entities.Concrete;
@@ -24,17 +25,17 @@ namespace Mobiroller.Business.Concrete
         public IResult Create(User entity)
         {
             _userDal.Add(entity);
-            return new SuccessResult("User create successfully !");
+            return new SuccessResult(Messages.UserRegistered);
         }
 
-        public IDataResult<UserLogin> Login(UserLogin entity)
+        public IResult Login(UserLogin entity)
         {
             var result = _userDal.Login(entity);
             if (result!=null)
             {
-                return new SuccessDataResult<UserLogin>(result,"Login successfully !");
+                return new SuccessResult();
             }
-            return new ErrorDataResult<UserLogin>("Login failed !");
+            return new ErrorResult(Messages.Error);
         }
     }
 }

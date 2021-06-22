@@ -26,7 +26,7 @@ namespace Mobiroller.Core.Utilities.Security.JWT
 
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            tokenInstance.Expiration = DateTime.Now.AddMinutes(30);
+            tokenInstance.Expiration = DateTime.Now.AddMinutes(10);
             JwtSecurityToken securityToken = new JwtSecurityToken(
                 issuer: Configuration["Token:Issuer"],
                 audience: Configuration["Token:Audience"],

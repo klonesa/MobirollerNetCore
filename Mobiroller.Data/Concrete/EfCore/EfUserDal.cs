@@ -12,7 +12,7 @@ using Mobiroller.Entities.DTOs;
 
 namespace Mobiroller.Data.Concrete.EfCore
 {
-    public class EfUserDal:EfEntityRepository<User,MobirollerContext>,IUserDal
+    public class EfUserDal : EfEntityRepository<User, MobirollerContext>, IUserDal
     {
         private readonly IConfiguration _configuration;
 
@@ -21,25 +21,28 @@ namespace Mobiroller.Data.Concrete.EfCore
             _configuration = configuration;
         }
 
-        public UserLogin Login(UserLogin userLogin)
+        public Token Login(UserLogin userLogin)
         {
-            using (var context=new MobirollerContext())
-            {
-                var result =
-                    context.Users.FirstOrDefault(x => x.Email == userLogin.Email && x.Password == userLogin.Password);
-                if (result != null)
-                {
-                    //Token üretiliyor.
-                    TokenHandler tokenHandler = new TokenHandler(_configuration);
-                    Mobiroller.Core.Utilities.Security.JWT.Token token = tokenHandler.CreateAccessToken(result);
+            //using (var context = new MobirollerContext())
+            //{
+            //    User user = context.Users.FirstOrDefault(x => x.Email == userLogin.Email && x.Password == userLogin.Password);
 
-                    //Refresh token Users tablosuna işleniyor.
-                    //result.RefreshToken = token.RefreshToken;
-                    //result.RefreshTokenEndDate = token.Expiration.AddMinutes(3);
-                    //return token;
-                }
-                return null;
-            }
+            //    //Token üretiliyor.
+            //    TokenHandler tokenHandler = new TokenHandler(_configuration);
+            //    Token token = tokenHandler.CreateAccessToken(user);
+
+            //    //Refresh token Users tablosuna işleniyor.
+            //    if (user != null)
+            //    {
+            //        user.RefreshToken = token.RefreshToken;
+            //        user.RefreshTokenEndDate = token.Expiration.AddMinutes(15);
+            //    }
+
+            //    context.SaveChanges();
+            //    return token;
+
+            //}
+            return null;
         }
     }
 }

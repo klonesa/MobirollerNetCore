@@ -10,6 +10,6 @@ namespace Mobiroller.Business.Abstract
     public interface IUserService
     {
         IResult Create(User entity);
-        IDataResult<UserLogin> Login (UserLogin entity);
+        IResult Login (UserLogin entity);
     }
 }
