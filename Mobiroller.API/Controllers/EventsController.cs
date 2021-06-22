@@ -10,6 +10,7 @@ using Mobiroller.Entities.DTOs;
 namespace Mobiroller.API.Controllers
 {
     [Route("api/[controller]")]
+    [Consumes("application/json")]
     [ApiController]
     public class EventsController : ControllerBase
     {

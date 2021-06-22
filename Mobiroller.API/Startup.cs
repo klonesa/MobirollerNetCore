@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Mobiroller.API.Extensions;
 using Mobiroller.Core.DependencyResolvers;
 using Mobiroller.Core.Extensions;
@@ -94,6 +95,12 @@ namespace Mobiroller.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
+            });
 
             app.UseEndpoints(endpoints =>
             {

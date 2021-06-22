@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Mobiroller.Core.CrossCuttingConcerns.Caching;
 using Mobiroller.Core.CrossCuttingConcerns.Caching.Microsoft;
 using Mobiroller.Core.Utilities.IoC;
@@ -20,6 +21,11 @@ namespace Mobiroller.Core.DependencyResolvers
             serviceCollection.AddMemoryCache();
 
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>(); //Farklı bir caching implemente edeceğimiz zaman bu kısmı değiştirmek yeterlidir.
+
+            serviceCollection.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mobiroller API", Version = "v1" });
+            });
         }
     }
 }

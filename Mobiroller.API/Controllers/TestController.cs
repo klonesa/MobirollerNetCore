@@ -10,6 +10,7 @@ namespace Mobiroller.API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
+    [Consumes("application/json")]
     [ApiController]
     public class TestController : ControllerBase
     {
