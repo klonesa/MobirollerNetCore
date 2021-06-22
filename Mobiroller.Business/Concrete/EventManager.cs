@@ -69,5 +69,25 @@ namespace Mobiroller.Business.Concrete
             }
             return new ErrorDataResult<List<EventDetail>>(Messages.Error);
         }
+
+        public IDataResult<List<EventDetail>> GetAllEventDetailsCategoryId(int categoryId)
+        {
+            var result = _eventDal.GetAllEventDetailsByCategoryId(categoryId);
+            if (result != null)
+            {
+                return new SuccessDataResult<List<EventDetail>>(result,Messages.GetById);
+            }
+            return new ErrorDataResult<List<EventDetail>>(Messages.Error);
+        }
+
+        public IDataResult<EventDetail> GetByEventId(int eventId)
+        {
+            var result = _eventDal.GetByEventId(eventId);
+            if (result!=null)
+            {
+                return new SuccessDataResult<EventDetail>(result,Messages.GetById);
+            }
+            return new ErrorDataResult<EventDetail>(Messages.Error);
+        }
     }
 }

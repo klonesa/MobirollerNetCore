@@ -12,5 +12,7 @@ namespace Mobiroller.Business.Abstract
         IResult ImportTurkishJson(List<JsonPackage> jsonString);
         IResult ImportItalianJson(List<JsonPackageIt> jsonString);
         IDataResult<List<EventDetail>> GetAllEventDetails();
+        IDataResult<List<EventDetail>> GetAllEventDetailsCategoryId(int categoryId);
+        IDataResult<EventDetail> GetByEventId(int eventId);
     }
 }

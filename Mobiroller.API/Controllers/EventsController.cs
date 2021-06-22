@@ -10,7 +10,7 @@ using Mobiroller.Entities.DTOs;
 namespace Mobiroller.API.Controllers
 {
     [Route("api/[controller]")]
-    [Consumes("application/json")]
+    //[Consumes("application/json")]
     [ApiController]
     public class EventsController : ControllerBase
     {
@@ -44,5 +44,30 @@ namespace Mobiroller.API.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("GetAllEventDetailsCategoryId")]
+        public IActionResult GetAllEventDetailsCategoryId(int categoryId)
+        {
+            var result = _eventService.GetAllEventDetailsCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("GetByEventId")]
+        public IActionResult GetByEventId(int eventId)
+        {
+            var result = _eventService.GetByEventId(eventId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
     }
 }
