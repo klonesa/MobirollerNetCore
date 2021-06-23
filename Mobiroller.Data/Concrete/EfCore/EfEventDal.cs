@@ -29,6 +29,23 @@ namespace Mobiroller.Data.Concrete.EfCore
             }
         }
 
+        public List<EventDetail> GetAllEventDetailsByEventName(string eventName)
+        {
+            using (var context=new MobirollerContext())
+            {
+                var result = from e in context.EventLog.Where(x => x.EventName.ToLower().Contains(eventName.ToLower()))
+                    join c in context.Category on e.CategoryId equals c.CategoryId
+                    select new EventDetail
+                    {
+                        EventId = e.EventId,
+                        EventName = e.EventName,
+                        EventDate = e.EventDate,
+                        CategoryName = c.CategoryName
+                    };
+                return result.ToList();
+            }
+        }
+
         public List<EventDetail> GetAllEventDetailsByCategoryId(int categoryId)
         {
             using (var context = new MobirollerContext())

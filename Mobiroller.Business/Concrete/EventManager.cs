@@ -70,7 +70,17 @@ namespace Mobiroller.Business.Concrete
             return new ErrorDataResult<List<EventDetail>>(Messages.Error);
         }
 
-        public IDataResult<List<EventDetail>> GetAllEventDetailsCategoryId(int categoryId)
+        public IDataResult<List<EventDetail>> GetAllEventDetailsByEventName(string eventName)
+        {
+            var result = _eventDal.GetAllEventDetailsByEventName(eventName);
+            if (result!=null)
+            {
+                return new SuccessDataResult<List<EventDetail>>(result, Messages.Listed);
+            }
+            return new ErrorDataResult<List<EventDetail>>(Messages.Error);
+        }
+
+        public IDataResult<List<EventDetail>> GetAllEventDetailsByCategoryId(int categoryId)
         {
             var result = _eventDal.GetAllEventDetailsByCategoryId(categoryId);
             if (result != null)

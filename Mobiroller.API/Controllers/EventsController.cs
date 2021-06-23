@@ -44,11 +44,23 @@ namespace Mobiroller.API.Controllers
 
             return BadRequest();
         }
+        
+        [HttpGet("GetAllEventDetailsByEventName")]
+        public IActionResult GetAllEventDetailsByEventName(string eventName)
+        {
+            var result = _eventService.GetAllEventDetailsByEventName(eventName);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
 
-        [HttpGet("GetAllEventDetailsCategoryId")]
+            return BadRequest();
+        }
+
+        [HttpGet("GetAllEventDetailsByCategoryId")]
         public IActionResult GetAllEventDetailsCategoryId(int categoryId)
         {
-            var result = _eventService.GetAllEventDetailsCategoryId(categoryId);
+            var result = _eventService.GetAllEventDetailsByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
