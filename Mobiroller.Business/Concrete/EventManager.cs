@@ -49,7 +49,7 @@ namespace Mobiroller.Business.Concrete
             foreach (var jsonPackageIt in jsonString)
             {
                 EventLog entity=new EventLog();
-                entity.EventDate = JsonParseHelper.ParseEventDate(jsonPackageIt.dc_Orario, jsonPackageIt.dc_Evento);
+                entity.EventDate = JsonParseHelperItalian.ParseEventDate(jsonPackageIt.dc_Orario, jsonPackageIt.dc_Evento);
                 entity.EventName = jsonPackageIt.dc_Evento;
                 entity.LanguagesId = Languages.Italian.GetHashCode();
                 entity.CategoryId = _categoryDal.GetCategoryIdByNameFromItalian(jsonPackageIt.dc_Categoria);
