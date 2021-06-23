@@ -42,7 +42,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
         
         [HttpGet("GetAllEventDetailsByEventName")]
@@ -54,7 +54,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("GetAllEventDetailsByCategoryId")]
@@ -66,7 +66,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("GetAllEventDetailsByYear")]
@@ -78,7 +78,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("GetByEventId")]
@@ -90,7 +90,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
 
     }

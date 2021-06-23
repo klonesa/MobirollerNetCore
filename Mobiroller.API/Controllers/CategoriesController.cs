@@ -29,7 +29,7 @@ namespace Mobiroller.API.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
         }
     }
 }
