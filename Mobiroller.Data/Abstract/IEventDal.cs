@@ -11,6 +11,7 @@ namespace Mobiroller.Data.Abstract
     {
         List<EventDetail> GetAllEventDetails();
         List<EventDetail> GetAllEventDetailsByCategoryId(int categoryId);
+        List<EventDetail> GetAllEventDetailsByYear(int year);
         EventDetail GetByEventId(int eventId);
     }
 }

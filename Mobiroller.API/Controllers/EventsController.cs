@@ -57,6 +57,18 @@ namespace Mobiroller.API.Controllers
             return BadRequest();
         }
 
+        [HttpGet("GetAllEventDetailsByYear")]
+        public IActionResult GetAllEventDetailsByYear(int year)
+        {
+            var result = _eventService.GetAllEventDetailsByYear(year);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
         [HttpGet("GetByEventId")]
         public IActionResult GetByEventId(int eventId)
         {

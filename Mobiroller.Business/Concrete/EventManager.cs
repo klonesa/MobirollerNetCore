@@ -80,6 +80,16 @@ namespace Mobiroller.Business.Concrete
             return new ErrorDataResult<List<EventDetail>>(Messages.Error);
         }
 
+        public IDataResult<List<EventDetail>> GetAllEventDetailsByYear(int year)
+        {
+            var result = _eventDal.GetAllEventDetailsByYear(year);
+            if (result!=null)
+            {
+                return new SuccessDataResult<List<EventDetail>>(result, Messages.Succeed);
+            }
+            return new SuccessDataResult<List<EventDetail>>(Messages.Error);
+        }
+
         public IDataResult<EventDetail> GetByEventId(int eventId)
         {
             var result = _eventDal.GetByEventId(eventId);

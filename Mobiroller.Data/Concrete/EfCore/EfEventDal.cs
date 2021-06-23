@@ -46,6 +46,23 @@ namespace Mobiroller.Data.Concrete.EfCore
             }
         }
 
+        public List<EventDetail> GetAllEventDetailsByYear(int year)
+        {
+            using (var context = new MobirollerContext())
+            {
+                var result = from e in context.EventLog.Where(x => x.EventDate.Year == year)
+                             join c in context.Category on e.CategoryId equals c.CategoryId
+                             select new EventDetail
+                             {
+                                 EventId = e.EventId,
+                                 EventName = e.EventName,
+                                 EventDate = e.EventDate,
+                                 CategoryName = c.CategoryName
+                             };
+                return result.ToList();
+            }
+        }
+
         public EventDetail GetByEventId(int eventId)
         {
             using (var context = new MobirollerContext())
