@@ -53,3 +53,7 @@ hata yönetimi kullanmaya çalıştım.
 - Newtonsoft.Json
 - IoC
 - Swagger
+
+![swagger](https://user-images.githubusercontent.com/64231904/123258213-cc09b480-d4fb-11eb-943b-6b42b49bed53.png)
+
+![sql](https://user-images.githubusercontent.com/64231904/123258505-1c811200-d4fc-11eb-8e4a-e7a703cda18f.png)
