@@ -10,7 +10,7 @@ namespace Mobiroller.API.Helpers
 {
     public class LocalizationMessageHandler:DelegatingHandler
     {
-        private readonly List<string> _supportedLanguages = new List<string>() { "tr-TR", "en-US" };
+        private readonly List<string> _supportedLanguages = new List<string>() { "tr-TR", "it-IT" };
 
         protected override async Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)

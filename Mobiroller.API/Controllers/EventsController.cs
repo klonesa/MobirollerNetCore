@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Localization;
 using Mobiroller.Business.Abstract;
 using Mobiroller.Entities.DTOs;
 
@@ -16,11 +17,13 @@ namespace Mobiroller.API.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
+        private IStringLocalizer<EventsController> _localizer;
         private readonly IEventService _eventService;
 
-        public EventsController(IEventService eventService)
+        public EventsController(IEventService eventService, IStringLocalizer<EventsController> localizer)
         {
             _eventService = eventService;
+            _localizer = localizer;
         }
 
         [HttpPost("ImportTurkishJson")]
