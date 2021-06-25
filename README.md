@@ -65,6 +65,10 @@ hata yönetimi kullanmaya çalıştım.
 
 ![swagger](https://user-images.githubusercontent.com/64231904/123258213-cc09b480-d4fb-11eb-943b-6b42b49bed53.png)
 
+![eventNameTR](https://user-images.githubusercontent.com/64231904/123467969-d14d2900-d5f9-11eb-89aa-cebdd85781ae.png)
+
+![eventNameIT](https://user-images.githubusercontent.com/64231904/123468020-e1fd9f00-d5f9-11eb-9238-bfc853cdec4b.png))
+
 ![sql](https://user-images.githubusercontent.com/64231904/123258505-1c811200-d4fc-11eb-8e4a-e7a703cda18f.png)
 
 ![Screenshot_3](https://user-images.githubusercontent.com/64231904/123467364-1b81da80-d5f9-11eb-869c-d1b065358830.png)
