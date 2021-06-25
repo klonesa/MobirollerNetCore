@@ -33,21 +33,18 @@ namespace Mobiroller.API.Controllers
         }
 
         [HttpPost("ImportTurkishJson")]
-        [CacheRemoveAspect("IEventService.Get")]
         public IActionResult ImportTurkishJson(List<JsonPackage> jsonString)
         {
             return Ok(_eventService.ImportTurkishJson(jsonString));
         }
 
         [HttpPost("ImportItalianJson")]
-        [CacheRemoveAspect("IEventService.Get")]
         public IActionResult ImportItalianJson(List<JsonPackageIt> jsonString)
         {
             return Ok(_eventService.ImportItalianJson(jsonString));
         }
 
         [AllowAnonymous]
-        [CacheAspect]
         [HttpGet("GetAllEventDetails")]
         public IActionResult GetAllEventDetails()
         {

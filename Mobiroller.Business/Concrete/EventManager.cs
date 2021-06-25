@@ -29,6 +29,7 @@ namespace Mobiroller.Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [CacheRemoveAspect("IEventService.Get")]
         public IResult ImportTurkishJson(List<JsonPackage> jsonString)
         {
             foreach (var jsonPackage in jsonString)
@@ -44,6 +45,7 @@ namespace Mobiroller.Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
+        [CacheRemoveAspect("IEventService.Get")]
         public IResult ImportItalianJson(List<JsonPackageIt> jsonString)
         {
             foreach (var jsonPackageIt in jsonString)
@@ -70,6 +72,7 @@ namespace Mobiroller.Business.Concrete
             return new ErrorDataResult<List<EventDetail>>(Messages.Error);
         }
 
+        [CacheAspect]
         public IDataResult<List<EventDetail>> GetAllEventDetailsByEventName(string eventName)
         {
             var result = _eventDal.GetAllEventDetailsByEventName(eventName);
