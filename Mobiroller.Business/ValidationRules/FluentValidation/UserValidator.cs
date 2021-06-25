@@ -12,6 +12,7 @@ namespace Mobiroller.Business.ValidationRules.FluentValidation
         {
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Name).MinimumLength(2).MaximumLength(30);
+            RuleFor(x => x.Email).NotEmpty();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Mobiroller.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public IActionResult Create([FromForm] User entity)
+        public IActionResult Register([FromForm] User entity)
         {
             var result = _userService.Create(entity);
             if (result.Success)

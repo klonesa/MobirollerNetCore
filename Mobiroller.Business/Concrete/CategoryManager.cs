@@ -33,5 +33,23 @@ namespace Mobiroller.Business.Concrete
             }
             return new ErrorDataResult<List<Category>>(Messages.Error);
         }
+
+        public IResult Add(Category entity)
+        {
+            _categoryDal.Add(entity);
+            return new SuccessResult(Messages.Added);
+        }
+
+        public IResult Update(Category entity)
+        {
+            _categoryDal.Update(entity);
+            return new SuccessResult(Messages.Updated); ;
+        }
+
+        public IResult Delete(Category entity)
+        {
+            _categoryDal.Delete(entity);
+            return new SuccessResult(Messages.Deleted);
+        }
     }
 }

@@ -10,5 +10,9 @@ namespace Mobiroller.Business.Abstract
     {
         public int GetCategoryIdByName(string categoryName);
         IDataResult<List<Category>> GetAllCategories();
+        IResult Add(Category entity);
+        IResult Update(Category entity);
+        IResult Delete(Category entity);
+
     }
 }

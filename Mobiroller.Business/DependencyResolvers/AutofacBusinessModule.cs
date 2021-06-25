@@ -27,6 +27,9 @@ namespace Mobiroller.Business.DependencyResolvers
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
+            builder.RegisterType<LanguageManager>().As<ILanguageService>().SingleInstance();
+            builder.RegisterType<EfLanguageDal>().As<ILanguageDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             //Autofac Dynamic Proxy kullanıldı.

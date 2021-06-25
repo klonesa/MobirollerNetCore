@@ -12,63 +12,62 @@ namespace Mobiroller.API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    //[Consumes("application/json")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class LanguagesController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
+        private ILanguageService _languageService;
 
-        public CategoriesController(ICategoryService categoryService)
+        public LanguagesController(ILanguageService languageService)
         {
-            _categoryService = categoryService;
+            _languageService = languageService;
         }
 
-        [HttpGet("GetAllCategories")]
-        public IActionResult GetAllCategories()
+        [HttpGet("GetAllLanguages")]
+        public IActionResult GetAllLanguages()
         {
-            var result = _categoryService.GetAllCategories();
+            var result = _languageService.GetAllLanguages();
             if (result.Success)
             {
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest();
         }
 
         [HttpPost("Add")]
-        public IActionResult Add(Category entity)
+        public IActionResult Add(Language entity)
         {
-            var result = _categoryService.Add(entity);
+            var result = _languageService.Add(entity);
             if (result.Success)
             {
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest();
         }
 
         [HttpPut("Update")]
-        public IActionResult Update(Category entity)
+        public IActionResult Update(Language entity)
         {
-            var result = _categoryService.Update(entity);
+            var result = _languageService.Update(entity);
             if (result.Success)
             {
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest();
         }
 
         [HttpDelete("Delete")]
-        public IActionResult Delete(Category entity)
+        public IActionResult Delete(Language entity)
         {
-            var result = _categoryService.Delete(entity);
+            var result = _languageService.Delete(entity);
             if (result.Success)
             {
                 return Ok(result);
             }
 
-            return BadRequest(result);
+            return BadRequest();
         }
     }
 }

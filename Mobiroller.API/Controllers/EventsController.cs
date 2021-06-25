@@ -13,12 +13,13 @@ using Mobiroller.Business.Abstract;
 using Mobiroller.Entities.DTOs;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Builder;
+using Mobiroller.Core.Aspect.Autofac.Caching;
 
 namespace Mobiroller.API.Controllers
 {
     [Route("api/[controller]")]
     //[Consumes("application/json")]
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class EventsController : ControllerBase
     {
@@ -32,17 +33,21 @@ namespace Mobiroller.API.Controllers
         }
 
         [HttpPost("ImportTurkishJson")]
+        [CacheRemoveAspect("IEventService.Get")]
         public IActionResult ImportTurkishJson(List<JsonPackage> jsonString)
         {
             return Ok(_eventService.ImportTurkishJson(jsonString));
         }
 
         [HttpPost("ImportItalianJson")]
+        [CacheRemoveAspect("IEventService.Get")]
         public IActionResult ImportItalianJson(List<JsonPackageIt> jsonString)
         {
             return Ok(_eventService.ImportItalianJson(jsonString));
         }
 
+        [AllowAnonymous]
+        [CacheAspect]
         [HttpGet("GetAllEventDetails")]
         public IActionResult GetAllEventDetails()
         {
@@ -55,7 +60,8 @@ namespace Mobiroller.API.Controllers
 
             return BadRequest(result);
         }
-
+       
+        [AllowAnonymous]
         [HttpGet("GetAllEventDetailsByEventName")]
         public IActionResult GetAllEventDetailsByEventName(string eventName)
         {
@@ -68,6 +74,7 @@ namespace Mobiroller.API.Controllers
             return BadRequest(result);
         }
 
+        [AllowAnonymous]
         [HttpGet("GetAllEventDetailsByCategoryId")]
         public IActionResult GetAllEventDetailsCategoryId(int categoryId)
         {
@@ -80,6 +87,7 @@ namespace Mobiroller.API.Controllers
             return BadRequest(result);
         }
 
+        [AllowAnonymous]
         [HttpGet("GetAllEventDetailsByYear")]
         public IActionResult GetAllEventDetailsByYear(int year)
         {
@@ -92,6 +100,7 @@ namespace Mobiroller.API.Controllers
             return BadRequest(result);
         }
 
+        [AllowAnonymous]
         [HttpGet("GetByEventId")]
         public IActionResult GetByEventId(int eventId)
         {
