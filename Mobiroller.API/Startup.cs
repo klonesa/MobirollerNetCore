@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Routing;
@@ -33,21 +35,31 @@ namespace Mobiroller.API
         public void ConfigureServices(IServiceCollection services)
         {
             //Request Localization Options
-            services.Configure<RequestLocalizationOptions>(
-                options =>
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
                 {
-                    var supportedCultures = new List<CultureInfo>
-                    {
-                        new CultureInfo("en-US"),
-                        new CultureInfo("it-IT"),
-                        new CultureInfo("tr-TR")
-                    };
+                    new CultureInfo("it-IT"),
+                    new CultureInfo("tr-TR")
+                };
 
-                    options.DefaultRequestCulture = new RequestCulture(culture: "tr-TR", uiCulture: "tr-TR");
-                    options.SupportedCultures = supportedCultures;
-                    options.SupportedUICultures = supportedCultures;
-                    options.RequestCultureProviders = new[] { new RouteDataRequestCultureProvider { IndexOfCulture = 1, IndexofUICulture = 1 } };
-                });
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(context =>
+                {
+                    var languages = context.Request.Headers["Accept-Language"].ToString();
+                    var currentLanguage = languages.Split(',').FirstOrDefault();
+                    var defaultLanguage = string.IsNullOrEmpty(currentLanguage) ? "tr-TR" : currentLanguage;
+
+                    //if (defaultLanguage != "de" && defaultLanguage != "en-US")
+                    //{
+                    //    defaultLanguage = "en-US";
+                    //}
+
+                    return Task.FromResult(new ProviderCultureResult(defaultLanguage, defaultLanguage));
+                }));
+            });
 
             services.Configure<RouteOptions>(options =>
             {

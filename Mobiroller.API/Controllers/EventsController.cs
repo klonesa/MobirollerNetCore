@@ -2,12 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.Extensions.Localization;
 using Mobiroller.Business.Abstract;
 using Mobiroller.Entities.DTOs;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Builder;
 
 namespace Mobiroller.API.Controllers
 {
@@ -41,6 +46,7 @@ namespace Mobiroller.API.Controllers
         [HttpGet("GetAllEventDetails")]
         public IActionResult GetAllEventDetails()
         {
+            //CultureInfo.CurrentUICulture = new CultureInfo(HttpContext.Request.Headers["Accept-Language"].ToString());
             var result = _eventService.GetAllEventDetails();
             if (result.Success)
             {
@@ -49,7 +55,7 @@ namespace Mobiroller.API.Controllers
 
             return BadRequest(result);
         }
-        
+
         [HttpGet("GetAllEventDetailsByEventName")]
         public IActionResult GetAllEventDetailsByEventName(string eventName)
         {
