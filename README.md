@@ -6,6 +6,15 @@ Gerekli database yapısını oluşturdum. Database scriptinide klasörleyerek pr
 gerekmektedir. Authorize olunduktan sonra Accept-Language kısmından "tr-TR" veya "it-IT" kısımları eklenerek o dile ait sorgulamalar gelmektedir.
 
 
+## İsterler
+
+- **Request Localization :** Postman programından header kısmına "Accept-Language" "tr-TR" ve "it-IT" şeklinde eklenerek gerekli get operasyonları başarıyla tamamlanmıştır.
+- **Authentication :** Asp.Net Core JWT teknolojisi kullanılarak gerekli oturum kısıtlama işlemleri yapılmıştır.Sisteme register olup devamında login işlemi yaptığınızda gelen tokeni girip kısıtlamaya dahil olan get ve diğer operasyonları gerçekleştirebilirsiniz.
+- **Cache (In-memory or Distributed) :** MemoryCache Aspect Oriented Programming kurallarına uygun bir şekilde cachelenmesi gereken methodların üzerine eklenmiştir.
+- **Exception Handler :** IResult, IDataResult gibi genel return işlemleriyle hata yönetimi bir kapsamda ele alınmıştır.
+- **Api & Code documentation :** Api dökümantasyonu için Swagger projeye implemente edilip, code dökümantasyonu için ise GitHub.readme alanında genel bilgilendirme yapılmıştır.
+- **Validation :** Validasyon yapılandırmasını kullanmak için Business katmanında ValidationRules klasörü altında gerekli kullanıma uygun yapıları oluşturabilirsiniz.
+
 
 ## Katmanlar
 
